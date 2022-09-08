@@ -3,7 +3,7 @@ import MyNav from './Components/MyNav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyFooter from './Components/MyFooter';
 import SingleBook from './Components/SingleBook';
-import books from './data/fantasy.json'
+import books from '../src/books (1)/history.json'
 import BookList from './Components/BookList';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
     <div className="App">      
         <MyNav/>  
         <MyFooter text="Hello"/> 
+        
         <BookList books={books}/> 
     </div>
   );

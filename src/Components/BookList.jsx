@@ -14,10 +14,6 @@ class BookList extends Component{
     //  filteredArray = this.props.books.filter(book => { return book.title.toLowerCase().includes(this.state.query.toLowerCase()) })
     //   console.log(filteredArray)
     // }
-
-
-
-
     render(){
 
 
@@ -25,7 +21,7 @@ class BookList extends Component{
             <Container>
                 {/* <Button onClick={() => filterBooks()} > something</Button> */}
                 <Row>
-                {this.props.books.filter(book => { return book.title.toLowerCase().includes(this.state.query.toLowerCase()) }).map((book)=>{
+                {this.props.books.map((book)=>{
                         return(
                     <Col key={book.asin}>
                   
