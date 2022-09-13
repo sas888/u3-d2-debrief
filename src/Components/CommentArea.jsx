@@ -9,12 +9,13 @@ import arrayofbooks from "./fantasy.json"
 
 const CommentArea =({filtercomment})=> {
    
-
-
     /* state = {
         exactcommnet:[]
     } */
-const [exactCommnet,setExactComment] = useState(null)
+const [exactCommnet,setExactComment] = useState([{
+    author:"nazami",
+    comment: "this is a good book"
+}])
 
 
  const  fetching = async() =>{
@@ -31,12 +32,14 @@ const [exactCommnet,setExactComment] = useState(null)
                 exactcommnet: data
                }) */
                setExactComment(data)
+               console.log(data)
         }
         else{
            /*  this.setState({
                 exactcommnet : "there is problem with taking data"
             }) */
             setExactComment("there is problem with taking data")
+            console.log("to check not working")
         }
        }
 
@@ -44,10 +47,9 @@ const [exactCommnet,setExactComment] = useState(null)
         fetching();
         console.log("componentDidMount runs corrently")} */
 
-        useEffect(()=>{
-            fetching()
-            console.log("componentDidMount run corrently")
-        })
+        useEffect(() => {
+           fetching()
+        },[])
 
 
 
@@ -61,25 +63,25 @@ const [exactCommnet,setExactComment] = useState(null)
 
         } */
 
-        useEffect(()=> {
-            console.log("bironi")
-            fetching()
-        },[filtercomment])
+        useEffect(()=> (
+               ()=>{fetching()}
+        ),[filtercomment])
 
         return(
             <>
             {exactCommnet.map(displaycomment => {return (
-                <Card style={{ width: '18rem' }} className="m-0 ">
-                <Card.Body>
-                <Card.Title>{displaycomment.author ?(displaycomment.author) : <Skeleton height={10} ></Skeleton>}</Card.Title>
-                <Card.Text>
-                {displaycomment.comment || <Skeleton height={10}></Skeleton>}
-                </Card.Text>
-                </Card.Body>
-                </Card>
+                    <Card style={{ width: '18rem' }} className="m-0 ">
+                    <Card.Body>
+                    <Card.Title>{displaycomment.author ?(displaycomment.author) : <Skeleton height={10} ></Skeleton>}</Card.Title>
+                    <Card.Text>
+                    {displaycomment.comment || <Skeleton height={10}></Skeleton>}
+                    </Card.Text>
+                    </Card.Body>
+                    </Card>
+                    )
+                    }
                 )
-                })
-            }
+            } 
             </>
         )
 }

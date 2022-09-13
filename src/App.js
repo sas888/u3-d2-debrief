@@ -6,29 +6,33 @@ import SingleBook from './Components/SingleBook';
 import BookList from './Components/BookList';
 import { Col, Container, Row } from 'react-bootstrap';
 import CommentArea from './Components/CommentArea';
-import { Component } from 'react';
+import { Component, useState } from 'react';
 import arrayofbooks from "./books (1)/fantasy.json"
 
-class App extends Component {
+const App =() => {
 
 
-  state={
+  /* state={
     books:[],
     targetbook: [],
     exactcommnet: [],
     targetevent:[],
     commentOfState:arrayofbooks[0].asin
-}
-
-handlestate = commentid => {
-  this.setState({
+} */
+const [commentOfState,setCommentOfState]= useState(arrayofbooks[0].asin)
+ 
+const handlestate = (commentid) => {
+ /*  this.setState({
     commentOfState : commentid,
 }
-  )
+  ) */
+  setCommentOfState(commentid)
   console.log(commentid)
  
 }
-render(){
+
+
+
   return (
     <div className="App m-0">
         <MyNav />  
@@ -36,10 +40,10 @@ render(){
         <Container >
           <Row>
             <Col>
-            <BookList  handlecomment={this.handlestate} ></BookList>
+            <BookList  handlecomment={handlestate} ></BookList>
             </Col>
             <Col>
-            <CommentArea filtercomment={this.state.commentOfState}></CommentArea>
+            <CommentArea filtercomment={commentOfState}></CommentArea>
             </Col>
           </Row>
         </Container>
@@ -48,7 +52,4 @@ render(){
 
 }
 
- 
-}
-
-export default App;
+export default App
