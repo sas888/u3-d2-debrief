@@ -1,41 +1,34 @@
-import { Component } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import SingleBook from "./SingleBook";
+import arrayofbooks from '../data/fantasy.json'
 
-
-class BookList extends Component{
-
-    state = {
-        query: "a"
-    }
-   
+ const BookList = (props)=> {
     // filterBooks = () => {
         
     //  filteredArray = this.props.books.filter(book => { return book.title.toLowerCase().includes(this.state.query.toLowerCase()) })
     //   console.log(filteredArray)
-    // }
-    render(){
-
-
+    // }        
         return(
-            <Container>
-                {/* <Button onClick={() => filterBooks()} > something</Button> */}
+            <Container > 
                 <Row>
-                {this.props.books.map((book)=>{
-                        return(
-                    <Col key={book.asin}>
-                  
-                            <SingleBook book={book}></SingleBook>
-                        
-                    </Col>
+                  <>{arrayofbooks.map((book)=> {
+                    return( <div onClick={(event)=>{
+                       console.log(event.target.src)
+                       arrayofbooks.filter(book => {book.img.includes(event.target.src) ?
+                       props.handlecomment(book.asin) : console.log("not happened")}
                         )
-                }
-                )
-            }
-            
+                      } }>
+                      <Col>
+                      <SingleBook  bk={book}></SingleBook>
+                      </Col>
+                      </div>
+                    )
+                  }
+                  )
+                }  
+             </>
             </Row>
             </Container>
         )
     }
-}
 export default BookList
