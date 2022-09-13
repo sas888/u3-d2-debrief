@@ -2,8 +2,19 @@ import {Component} from "react";
 import { Navbar, Container,Nav, Form,Button } from "react-bootstrap";
 
 class MyNav extends Component{
+  state={
+    searchvalue: []
+    
+  }
+  updating = (value)=>{
+    this.setState({
+      searchvalue: value
+    })
+  }
+
 
 render(){
+  {console.log(this.state.searchvalue)}
     return(
         <>
         <Navbar bg="dark" variant="dark">
@@ -15,7 +26,10 @@ render(){
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
+                    value={this.state.searchvalue}
+                    onChange={(e)=> this.updating(e.target.value)}
                   />
+                  
                   <Button variant="outline-success">Search</Button>
                 </Form>
         </Container>
