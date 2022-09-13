@@ -17,8 +17,9 @@ class App extends Component {
     targetbook: [],
     exactcommnet: [],
     targetevent:[],
-    commentOfState:[]
+    commentOfState:arrayofbooks[0].asin
 }
+
 handlestate = commentid => {
   this.setState({
     commentOfState : commentid,
@@ -30,7 +31,7 @@ handlestate = commentid => {
 render(){
   return (
     <div className="App m-0">
-        <MyNav/>  
+        <MyNav />  
         <MyFooter text="Hello"/> 
         <Container >
           <Row>
