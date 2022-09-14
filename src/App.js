@@ -37,12 +37,12 @@ const handlestate = (commentid) => {
     <div className="App m-0">
         <MyNav />  
         <MyFooter text="Hello"/> 
-        <Container >
-          <Row>
-            <Col>
+        <Container fluid="true" style={{margin:0, width:"100%" }} className='w-auto justify-content-between fluid'>
+          <Row style={{margin:0}} className='d-flex justify-content-between'>
+            <Col style={{margin:0}} className="col-6">
             <BookList  handlecomment={handlestate} ></BookList>
             </Col>
-            <Col>
+            <Col style={{margin:0}}>
             <CommentArea filtercomment={commentOfState}></CommentArea>
             </Col>
           </Row>

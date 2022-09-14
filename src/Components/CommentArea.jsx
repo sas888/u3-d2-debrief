@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Component } from "react";
-import { Alert, Card } from "react-bootstrap";
+import { Alert, Card,Button, Container, Row, Col,Form, InputGroup } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import arrayofbooks from "./fantasy.json"
 
@@ -68,21 +67,56 @@ const [exactCommnet,setExactComment] = useState([{
         ),[filtercomment])
 
         return(
-            <>
-            {exactCommnet.map(displaycomment => {return (
-                    <Card style={{ width: '18rem' }} className="m-0 ">
+            <div className=" justify-content-between m-5" style={{position:"sticky", top:0}}>
+               
+    <Form>
+      <Row className="align-items-center">
+        <Col className="my-1">
+          <Form.Label htmlFor="inlineFormInputName" visuallyHidden>
+            Email
+          </Form.Label>
+          <Form.Control id="inlineFormInputName" placeholder="Jane Doe" />
+        </Col>
+        <Col className="my-1">
+          <Form.Label htmlFor="inlineFormInputGroupUsername" visuallyHidden>
+            Comment
+          </Form.Label>
+          <InputGroup>
+            <Form.Control
+              id="inlineFormInputGroupUsername"
+              placeholder="Comment"
+            />
+          </InputGroup>
+        </Col> 
+      </Row>
+      <Button type="submit">Add comment</Button>
+    </Form>
+    <div className="d-inline-flex flex-wrap m-5"> 
+        {exactCommnet.map(displaycomment => {return (
+                    <Card border="primary" bg="success" style={{ width: '18rem' }} className="m-0 ">
                     <Card.Body>
                     <Card.Title>{displaycomment.author ?(displaycomment.author) : <Skeleton height={10} ></Skeleton>}</Card.Title>
                     <Card.Text>
                     {displaycomment.comment || <Skeleton height={10}></Skeleton>}
                     </Card.Text>
                     </Card.Body>
+                    <Container>
+                        <Row>
+                            <Col>
+                            <Button variant="danger">Delete</Button>
+                            </Col>
+                            <Col>
+                            <Button variant="info">Edit</Button>
+                            </Col>
+                        </Row>
+                    </Container>
                     </Card>
                     )
                     }
                 )
             } 
-            </>
+             </div>
+             </div>
         )
 }
 export default CommentArea
